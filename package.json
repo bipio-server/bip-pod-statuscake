@@ -1,0 +1,31 @@
+{
+    "name": "bip-pod-statuscake",
+    "version": "0.0.1",
+    "description": "StatusCake Pod for Bipio",
+    "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "statuscake"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/bipio-server/bip-pod-statuscake.git"
+    },
+    "bugs": {
+        "url": "http://github.com/bipio-server/bip-pod-statuscake/issues"
+    },
+    "licenses": [
+    {
+        "type": "GNU GPLv3",
+        "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+    ],
+    "main": ".",
+    "dependencies": {
+        "bip-pod" : ">=0.0.1"
+    },
+    "engines": {
+        "node": ">= 0.10.0"
+    }
+}

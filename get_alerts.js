@@ -1,8 +1,5 @@
 /**
  *
- * The Bipio GetAlerts Pod.  statuscake sample action definition
- * ---------------------------------------------------------------
- *
  * @author Michael Pearson <michael@cloudspark.com.au>
  * Copyright (c) 2010-2014 CloudSpark pty ltd http://www.cloudspark.com.au
  *
@@ -84,19 +81,6 @@ GetAlerts.prototype.teardown = function(channel, accountInfo, next) {
   this.pod.trackingRemove(channel, accountInfo, next);
 }
 
-/**
- * Action Invoker - the primary function of a channel
- *
- * @param Object imports transformed key/value input pairs
- * @param Channel channel invoking channel model
- * @param Object sysImports
- * @param Array contentParts array of File Objects, key/value objects
- * with attributes txId (transaction ID), size (bytes size), localpath (local tmp file path)
- * name (file name), type (content-type), encoding ('binary')
- *
- * @param Function next callback(error, exports, contentParts, transferredBytes)
- *
- */
 GetAlerts.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var pod = this.pod,
     log = this.$resource.log;
@@ -110,22 +94,17 @@ GetAlerts.prototype.invoke = function(imports, channel, sysImports, contentParts
 
         } else {
           var params = {
-//            since : Math.floor(since / 1000),
+            since : Math.floor(since / 1000),
             TestID : channel.config.TestID
           };
-console.log(params);
-
           pod.scRequestParsed('Alerts', params, sysImports, function(err, resp) {
-console.log(arguments);            
             if (err) {
               next(err);
-            } else if (resp.length) {
-             
+            } else if (resp.length) {             
               for (var i = 0; i < resp.length; i++) {
                 next(false, resp[i]);
               }
-            }
-            
+            }            
           });
         }
       });

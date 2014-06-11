@@ -54,7 +54,7 @@ StatusCake.scRequest = function(path, params, sysImports, next, method) {
       'Username' : sysImports.auth.issuer_token.username
     }    
   }, paramStr;  
-  
+
   https.request(opts, next).end();  
 }
 
@@ -71,7 +71,6 @@ StatusCake.scRequestParsed = function(path, params, sysImports, next, method) {
         next(data);
       } else {
         try {          
-console.log(data);          
           next(false, JSON.parse(data));          
         } catch (e) {
           next(e.message);

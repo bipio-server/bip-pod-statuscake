@@ -94,7 +94,7 @@ GetAlerts.prototype.invoke = function(imports, channel, sysImports, contentParts
 
         } else {
           var params = {
-            since : Math.floor(since / 1000),
+            Since : Math.floor(since / 1000),
             TestID : channel.config.TestID
           };
           pod.scRequestParsed('Alerts', params, sysImports, function(err, resp) {

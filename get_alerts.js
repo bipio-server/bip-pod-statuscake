@@ -19,8 +19,8 @@
 
 function GetAlerts(podConfig) {
   this.name = 'get_alerts';
-  this.description = 'On New Alert',
-  this.description_long = 'Triggers when a new Alert appears for a given test',
+  this.title = 'On New Alert',
+  this.description = 'Triggers when a new Alert appears for a given test',
   this.trigger = true;
   this.singleton = false;
   this.podConfig = podConfig;
@@ -100,11 +100,11 @@ GetAlerts.prototype.invoke = function(imports, channel, sysImports, contentParts
           pod.scRequestParsed('Alerts', params, sysImports, function(err, resp) {
             if (err) {
               next(err);
-            } else if (resp.length) {             
+            } else if (resp.length) {
               for (var i = 0; i < resp.length; i++) {
                 next(false, resp[i]);
               }
-            }            
+            }
           });
         }
       });

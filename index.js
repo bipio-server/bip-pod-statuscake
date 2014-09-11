@@ -21,8 +21,8 @@ https = require('https'),
 qs = require('querystring'),
 StatusCake = new Pod({
   name : 'statuscake',
-  description : 'StatusCake',
-  description_long : '<a href="https://www.statuscake.com?aff=15112">StatusCake</a> : Website Uptime Monitoring and Alerts - Free Unlimited Downtime Monitorin',
+  title : 'StatusCake',
+  description : '<a href="https://www.statuscake.com?aff=15112">StatusCake</a> : Website Uptime Monitoring and Alerts - Free Unlimited Downtime Monitorin',
   authType : 'issuer_token',
   authMap : {
     username : 'Username',
@@ -52,10 +52,10 @@ StatusCake.scRequest = function(path, params, sysImports, next, method) {
     headers : {
       'API' : sysImports.auth.issuer_token.password,
       'Username' : sysImports.auth.issuer_token.username
-    }    
-  }, paramStr;  
+    }
+  }, paramStr;
 
-  https.request(opts, next).end();  
+  https.request(opts, next).end();
 }
 
 StatusCake.scRequestParsed = function(path, params, sysImports, next, method) {
@@ -70,8 +70,8 @@ StatusCake.scRequestParsed = function(path, params, sysImports, next, method) {
       if(res.statusCode !== 200) {
         next(data);
       } else {
-        try {          
-          next(false, JSON.parse(data));          
+        try {
+          next(false, JSON.parse(data));
         } catch (e) {
           next(e.message);
         }
@@ -82,11 +82,11 @@ StatusCake.scRequestParsed = function(path, params, sysImports, next, method) {
 
 StatusCake.rpc = function(action, method, sysImports, options, channel, req, res) {
   var pod = this.pod;
-  
+
   if (method == 'get_tests') {
     this.scRequest('Tests', {}, sysImports, function(pRes) {
       pRes.pipe(res);
-    });    
+    });
   } else {
     this.__proto__.rpc.apply(this, arguments);
   }

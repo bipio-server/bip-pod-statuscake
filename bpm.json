@@ -1,0 +1,70 @@
+{
+  "name": "statuscake",
+  "title": "StatusCake",
+  "description": "<a href=\"https://www.statuscake.com?aff=15112\">StatusCake</a> : Website Uptime Monitoring and Alerts - Free Unlimited Downtime Monitorin",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token"
+  },
+  "rpcs": {
+    "get_tests": {
+      "contentType": "application/json",
+      "title": "Get Tests"
+    }
+  },
+  "actions": {
+    "get_alerts": {
+      "title": "On New Alert",
+      "description": "Triggers when a new Alert appears for a given test",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "TestID": {
+            "type": "integer",
+            "description": "Test ID",
+            "oneOf": [
+              {
+                "$ref": "/renderers/get_tests/{TestID}"
+              }
+            ],
+            "label": {
+              "$ref": "/renderers/get_tests/{WebsiteName}"
+            }
+          }
+        },
+        "disposition": [
+          "TestID"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "Triggered": {
+            "type": "string",
+            "description": "Trigger Time"
+          },
+          "StatusCode": {
+            "type": "integer",
+            "description": "Status Code"
+          },
+          "Unix": {
+            "type": "integer",
+            "description": "Unix Timestamp"
+          },
+          "Status": {
+            "type": "string",
+            "description": "Status String"
+          },
+          "TestID": {
+            "type": "integer",
+            "description": "Test ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    }
+  }
+}

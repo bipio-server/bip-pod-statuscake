@@ -17,61 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function GetAlerts(podConfig) {
-  this.name = 'get_alerts';
-  this.title = 'On New Alert',
-  this.description = 'Triggers when a new Alert appears for a given test',
-  this.trigger = true;
-  this.singleton = false;
-  this.podConfig = podConfig;
-}
+function GetAlerts() {}
 
 GetAlerts.prototype = {};
-
-GetAlerts.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "TestID" : {
-          "type" :  "integer",
-          "description" : "Test ID",
-          oneOf : [
-          {
-            '$ref' : '/renderers/get_tests/{TestID}'
-          }
-          ],
-          label : {
-            '$ref' : '/renderers/get_tests/{WebsiteName}'
-          }
-        }
-      }
-    },
-    "exports": {
-      "properties" : {
-        "Triggered" : {
-          "type" : "string",
-          "description" : "Trigger Time"
-        },
-        "StatusCode" : {
-          "type" : "integer",
-          "description" : "Status Code"
-        },
-        "Unix" : {
-          "type" : "integer",
-          "description" : "Unix Timestamp"
-        },
-        "Status" : {
-          "type" : "string",
-          "description" : "Status String"
-        },
-        "TestID" : {
-          "type" : "integer",
-          "description" : "Test ID"
-        }
-      }
-    }
-  }
-}
 
 GetAlerts.prototype.setup = function(channel, accountInfo, next) {
   this.pod.trackingStart(channel, accountInfo, true, next);

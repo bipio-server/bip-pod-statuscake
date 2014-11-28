@@ -1,12 +1,16 @@
 {
   "name": "statuscake",
   "title": "StatusCake",
-  "description": "<a href=\"https://www.statuscake.com?aff=15112\">StatusCake</a> : Website Uptime Monitoring and Alerts - Free Unlimited Downtime Monitorin",
-  "url": "",
+  "description": "StatusCake : Website Uptime Monitoring and Alerts - Free Unlimited Downtime Monitorin",
+  "url": "https://www.statuscake.com?aff=15112",
   "trackDuplicates": false,
   "config": {},
   "auth": {
-    "strategy": "issuer_token"
+    "strategy": "issuer_token",
+    "authMap" : {
+      "username" : "Username",
+      "password" : "API Key"
+    }
   },
   "rpcs": {
     "get_tests": {

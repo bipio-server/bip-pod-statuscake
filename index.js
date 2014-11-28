@@ -19,22 +19,7 @@
 var Pod = require('bip-pod'),
 https = require('https'),
 qs = require('querystring'),
-StatusCake = new Pod({
-  name : 'statuscake',
-  title : 'StatusCake',
-  description : '<a href="https://www.statuscake.com?aff=15112">StatusCake</a> : Website Uptime Monitoring and Alerts - Free Unlimited Downtime Monitorin',
-  authType : 'issuer_token',
-  authMap : {
-    username : 'Username',
-    password : 'API Key'
-  },
-  'renderers' : {
-    'get_tests' : {
-      description : 'Get Tests',
-      contentType : DEFS.CONTENTTYPE_JSON
-    }
-  }
-});
+StatusCake = new Pod();
 
 StatusCake.getParameters = function(path, params) {
   return '/API/'
@@ -91,9 +76,6 @@ StatusCake.rpc = function(action, method, sysImports, options, channel, req, res
     this.__proto__.rpc.apply(this, arguments);
   }
 }
-
-// Include any actions
-StatusCake.add(require('./get_alerts.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = StatusCake;

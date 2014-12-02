@@ -40,11 +40,11 @@
             "description": "Test ID",
             "oneOf": [
               {
-                "$ref": "/renderers/get_tests/{TestID}"
+                "$ref": "/rpcs/get_tests/{TestID}"
               }
             ],
             "label": {
-              "$ref": "/renderers/get_tests/{WebsiteName}"
+              "$ref": "/rpcs/get_tests/{WebsiteName}"
             }
           }
         },

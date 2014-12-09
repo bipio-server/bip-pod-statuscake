@@ -77,7 +77,14 @@
         }
       },
       "imports": {
-        "properties": {}
+        "properties": {
+          "since" : {
+            "type": "integer",
+            "title": "Search Since",
+            "description" : "Unix Timestamp"
+          }
+        },
+        "disposition" : [ "since" ]
       }
     }
   }

@@ -29,37 +29,44 @@ GetAlerts.prototype.teardown = function(channel, accountInfo, next) {
   this.pod.trackingRemove(channel, accountInfo, next);
 }
 
-GetAlerts.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+GetAlerts.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
   var pod = this.pod,
-    log = this.$resource.log;
+    self;
 
   pod.trackingGet(channel, function(err, since) {
-    if (!err) {
-      pod.trackingUpdate(channel, function(err, until) {
-        if (err) {
-          log(err, channel, 'error');
-          next('Internal Error');
-
-        } else {
-          var params = {
-            Since : Math.floor(since / 1000),
-            TestID : channel.config.TestID
-          };
-          pod.scRequestParsed('Alerts', params, sysImports, function(err, resp) {
-            if (err) {
-              next(err);
-            } else if (resp.length) {
-              for (var i = 0; i < resp.length; i++) {
-                next(false, resp[i]);
-              }
-            }
-          });
-        }
-      });
+    if (err) {
+      next(err);
     } else {
-      next('Internal Error');
+      pod.trackingUpdate(channel, function(err, until) {
+        if (!imports.since) {
+          imports.Since = Math.floor(since / 1000);
+        }
+        self.invoke(imports, channel, sysImports, contentParts, next);
+      });
     }
   });
+}
+
+GetAlerts.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var pod = this.pod,
+    params = {
+      TestID : channel.config.TestID
+    };
+
+  if (imports.since) {
+    params.Since = imports.since;
+  }
+
+  pod.scRequestParsed('Alerts', params, sysImports, function(err, resp) {
+    if (err) {
+      next(err);
+    } else if (resp.length) {
+      for (var i = 0; i < resp.length; i++) {
+        next(false, resp[i]);
+      }
+    }
+  });
+
 }
 
 // -----------------------------------------------------------------------------

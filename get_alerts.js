@@ -31,7 +31,7 @@ GetAlerts.prototype.teardown = function(channel, accountInfo, next) {
 
 GetAlerts.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
   var pod = this.pod,
-    self;
+    self = this;
 
   pod.trackingGet(channel, function(err, since) {
     if (err) {

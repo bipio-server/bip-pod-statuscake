@@ -78,14 +78,20 @@
       },
       "imports": {
         "properties": {
-          "since" : {
+          "since": {
             "type": "integer",
             "title": "Search Since",
-            "description" : "Unix Timestamp"
+            "description": "Unix Timestamp"
           }
         },
-        "disposition" : [ "since" ]
+        "disposition": [
+          "since"
+        ]
       }
     }
-  }
+  },
+  "tags": [
+    "messaging",
+    "analytics"
+  ]
 }

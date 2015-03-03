@@ -37,7 +37,6 @@
         "properties": {
           "TestID": {
             "type": "integer",
-            "description": "Test ID",
             "oneOf": [
               {
                 "$ref": "/rpcs/get_tests/{TestID}"
@@ -45,7 +44,8 @@
             ],
             "label": {
               "$ref": "/rpcs/get_tests/{WebsiteName}"
-            }
+            },
+            "title": "Test ID"
           }
         },
         "disposition": [
@@ -56,23 +56,23 @@
         "properties": {
           "Triggered": {
             "type": "string",
-            "description": "Trigger Time"
+            "title": "Trigger Time"
           },
           "StatusCode": {
             "type": "integer",
-            "description": "Status Code"
+            "title": "Status Code"
           },
           "Unix": {
             "type": "integer",
-            "description": "Unix Timestamp"
+            "title": "Unix Timestamp"
           },
           "Status": {
             "type": "string",
-            "description": "Status String"
+            "title": "Status String"
           },
           "TestID": {
             "type": "integer",
-            "description": "Test ID"
+            "title": "Test ID"
           }
         }
       },

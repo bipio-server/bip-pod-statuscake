@@ -50,7 +50,7 @@ GetAlerts.prototype.trigger = function(imports, channel, sysImports, contentPart
 GetAlerts.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var pod = this.pod,
     params = {
-      TestID : channel.config.TestID
+      TestID : imports.TestID
     };
 
   if (imports.since) {
